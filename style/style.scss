@@ -215,6 +215,7 @@ header {
     main {
       min-height: 95vh;
       padding-top: 7rem;
+      margin-right: 15%;
 
       h1 {
         font-size: 4.9rem;
@@ -222,7 +223,8 @@ header {
         text-align: center;
         max-width: 15ch;
         margin-bottom: 2.8rem;
-        margin-inline: auto;
+        margin-left: auto;
+        margin-right: auto;
       }
       
       p {
@@ -230,13 +232,15 @@ header {
         line-height: 25px;
         text-align: center;
         max-width: 20ch;
-        margin-inline: auto;
+        margin-left: auto;
+        margin-right: auto;
         margin-bottom: 7rem;
       }
 
       img {
         width: 198px;
-        margin-inline: auto;
+        margin-left: auto;
+        margin-right: auto;
         // margin-bottom: 10rem;
         transform: translatey(0px);
         animation: float 5s ease-in-out infinite;
@@ -400,7 +404,8 @@ header.on {
       margin-bottom: 3rem;
       width: 93%;
       height: 5rem;
-      padding-inline: 1rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
       border: 1px solid $greenImageBackground;
       font-size: 1.5rem;
       color: #303853;

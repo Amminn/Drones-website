@@ -220,6 +220,7 @@ header .container nav .menu ul li a {
 header .container main {
   min-height: 95vh;
   padding-top: 7rem;
+  margin-right: 15%;
 }
 
 header .container main h1 {
@@ -228,7 +229,8 @@ header .container main h1 {
   text-align: center;
   max-width: 15ch;
   margin-bottom: 2.8rem;
-  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header .container main p {
@@ -236,13 +238,15 @@ header .container main p {
   line-height: 25px;
   text-align: center;
   max-width: 20ch;
-  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 7rem;
 }
 
 header .container main img {
   width: 198px;
-  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
   -webkit-transform: translatey(0px);
           transform: translatey(0px);
   -webkit-animation: float 5s ease-in-out infinite;
@@ -442,7 +446,8 @@ header.on .container nav .menu {
   margin-bottom: 3rem;
   width: 93%;
   height: 5rem;
-  padding-inline: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
   border: 1px solid #B2DD9E;
   font-size: 1.5rem;
   color: #303853;
