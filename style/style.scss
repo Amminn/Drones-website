@@ -8,6 +8,14 @@ $blueImageBackground: #303853;
 $titleFont: 'Bebas Neue','cursive';
 $textFont: 'Montserrat','sans-serif';
 
+/* ==== media screen ==== */
+
+@mixin desktop {
+  @media screen and (min-width: 900px) {
+    @content
+  }
+}
+
 *,
 *::after,
 *::before {
@@ -61,7 +69,7 @@ ul {
   list-style-type: none;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 768px) {
   h1 {
     font-size: 9.7rem;
   }
@@ -79,47 +87,57 @@ p {
   font-weight: 400;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 768px) {
   p {
     font-size: 2.4rem;
   }
 }
 
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
 .container {
   width: 100%;  
-  max-width: 1057px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+
+  @include desktop {
+    padding-right: 0;
+  }
 }
 
 header {
-  min-height: 100vh;
+  min-height: 80vh;
   // width: 100%;
   position: relative;
   margin-left: 6rem;
   background-color: #303853;
   padding-bottom: 10rem;
-  z-index: 0;
+  z-index: 99;
+
+  @include desktop {
+    margin-left: 15%;
+  }
 
   &::before {
     content: '';
     position: absolute;
     background: url("../Images/header-background.png"), #B2DD9E;
     background-blend-mode: screen, normal;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 100%;
     right: 0;
     top: 0;
     z-index: -1;
+    
+    @include desktop {
+      background: url("../Images/header-background-big-screen.png"), #B2DD9E;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
   }
 
   &::after {
@@ -131,6 +149,10 @@ header {
     right: 0%;
     top: 0;
     z-index: -1;
+
+    @include desktop {
+      width: 40%;
+    }
   }
 
   .container {
@@ -140,21 +162,28 @@ header {
       align-items: center; 
 
       .logo {
-        margin-left: -6rem;
-        a {
-          color: white;
-        }
-
         font-family: $titleFont;
         text-transform: uppercase;
         font-size: 2.6rem;
         padding: 1rem 1.2rem;
         color: white;
         background-color: black;
+        margin-left: -6rem;
         user-select: none;
 
-        span {
-          color: $textBlue;
+        @include desktop {
+          font-size: 3.6rem;
+          padding: 1.2rem 1.9rem;
+          margin: initial;
+          margin-left: -12rem;
+        }
+
+        a {
+          color: white;
+
+          span {
+            color: $textBlue;
+          }
         }
       }
 
@@ -185,10 +214,24 @@ header {
         &:hover {
           transform: rotate(180deg);
         }
+
+        @include desktop {
+          display: none;
+        }
+      }
+
+      .nav-btn {
+        cursor: pointer;
+      }
+
+      .nav-btn {
+        @include desktop {
+          display: none;
+        }
       }
 
       .menu {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: -100%;
         background-color: #363B4E;
@@ -197,6 +240,18 @@ header {
         padding: 3.7rem 4.3rem 3.7rem 2rem;
         text-align: right;
         transition: 0.4s ease;
+        z-index: 10;
+
+        @include desktop {
+          position: static;
+          height: auto;
+          width: fit-content;
+          background-color: transparent;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          margin-right: 4%;
+        }
 
         ul {
           font-size: $titleFont;
@@ -204,8 +259,20 @@ header {
           font-size: 2.5rem;
           text-transform: uppercase;
 
+          @include desktop {
+            font-size: 2.4rem;
+            display: flex;
+            align-items: center;
+            margin-right: 3rem;
+          }
+
           li {
             margin-bottom: 1.1rem;
+
+            @include desktop {
+              margin-bottom: initial;
+              margin-right:3.4rem
+            }
 
             a {
               color: white;
@@ -214,29 +281,54 @@ header {
         }
       }
     }
+
     main {
-      min-height: 95vh;
+      min-height: 80vh;
       padding-top: 7rem;
       margin-right: 15%;
 
+      @include desktop {
+        min-height: 80vh;
+        padding-top: 13.8rem;
+        display: flex;
+        align-items: flex-start;
+        margin-right: initial;
+      }
+
       h1 {
-        font-size: 4.9rem;
+        // font-size: 4.9rem;
         line-height: 91.6%;
         text-align: center;
         max-width: 15ch;
         margin-bottom: 2.8rem;
         margin-left: auto;
         margin-right: auto;
+        
+        @include desktop {
+          margin-top: 4rem;
+          text-align: left;
+          margin-left: -12rem;
+          max-width: 10ch;
+          line-height: 89px;
+        }
       }
       
       p {
-        font-size: 18px;
+        // font-size: 18px;
         line-height: 25px;
         text-align: center;
         max-width: 20ch;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 7rem;
+
+        @include desktop {
+          text-align: left;
+          margin-left: -12rem;
+          max-width: 25ch;
+          line-height: 34px;
+          margin-bottom: 4rem;
+        }
       }
 
       img {
@@ -246,6 +338,10 @@ header {
         // margin-bottom: 10rem;
         transform: translatey(0px);
         animation: float 5s ease-in-out infinite;
+
+        @include desktop {
+          width: 484px;
+        }
       }
     }
   }
@@ -281,23 +377,25 @@ header.on {
   padding-top: 6rem;
   margin-left: 6rem;
   min-height: 80vh;
-  background:#303853;
-  position: relative;
+  background: url('../Images/first-section.png'), #303853;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
   font-family: $titleFont;
   text-transform: uppercase;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: url('../Images/first-section.png');
-    background-repeat: repeat;
+  
+  @include desktop {
+    // margin-left: 12.5%;
+    margin-left: 15%;
+    background: url('../Images/first-section-big-secreen.png'), #303853;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10rem;
   }
   
   h3 {
@@ -305,6 +403,12 @@ header.on {
     font-size: 24px;
     margin-bottom: 6rem;
     max-width: 30ch;
+
+    @include desktop {
+      max-width: 35ch;
+      font-size: 54px;
+      line-height: 99.6%;
+    }
   }
 
   p {
@@ -330,8 +434,36 @@ header.on {
   margin-left: 4rem;
   padding-bottom: 4rem;
 
+  @include desktop {
+    margin-top: -17rem;
+    margin-left: 15%;
+    padding-bottom: 10rem;
+  }
+
+  .container {
+    @include desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .text {
+      @include desktop {
+        max-width: 30%;
+        margin-left: -12rem;
+        // margin-right: auto;
+      }
+    }
+  }
+
   h2 {
     margin-bottom: 4rem;
+
+    @include desktop {
+      margin-top: 17rem;
+      // min-width: 20ch;
+    }
   }
 
   .paragraph {
@@ -346,6 +478,14 @@ header.on {
     grid-template-areas: "t-l t-m t-r"
                          "m-l m-m m-r"
                          "b-l b-m b-r";
+
+    img {
+      min-width: 117px;
+      aspect-ratio: 1 / 1;
+      @include desktop {
+        min-width: 50%;
+      }
+    }
 
     img:nth-child(1){
       grid-area: t-m;
@@ -362,14 +502,41 @@ header.on {
     img:nth-child(5){
       grid-area: b-m;
     }
+
+    @include desktop {
+      width: 70%;
+      margin-left: auto;
+      // margin-top: 
+    }
   }
 }
 
 .contact {
   background-color: $greenImageBackground;
   background-size: cover;
-  padding-left: 4rem;
+  padding-left: 6rem;
   padding-bottom: 5.3rem;
+  
+  @include desktop {
+    padding-left: 15%;
+  }
+
+  .container {
+    padding-left: 0;
+    @include desktop {
+      display: flex;
+      
+      .text {
+        width: 60%;
+        margin-left: -12rem;
+      }
+
+      .info {
+        justify-self: center;
+        align-self: center;
+      }
+    }
+  }
 
   h2 {
     padding: 3rem 2.5rem 2.5rem 0.5rem;
@@ -387,6 +554,10 @@ header.on {
       top: 50%;
       transform: translate(-50%, -50%);
       z-index: -1;
+
+      @include desktop {
+        width: 1150px;
+      }
     }
   }
 
@@ -422,6 +593,7 @@ header.on {
       font-family: $titleFont;
       border: none;
       margin-bottom: 6.1rem;
+      cursor: pointer;
     }
   }
 
